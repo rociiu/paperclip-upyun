@@ -1,5 +1,3 @@
-# require_relative '../../paperclip-upyun/exceptions'
-# require_relative '../../paperclip-upyun/response'
 
 module Paperclip
   module Storage

@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = <<-EOF
     UPYUN API SDK for Paperclip Storage Plugin. Use Upyun SDK to upload file.
   EOF
-  spec.homepage      = "https://github.com/Edison-Hsu/paperclip-upyun"
+  spec.homepage      = "https://github.com/jhw-dev/paperclip-upyun"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
