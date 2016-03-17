@@ -12,7 +12,7 @@ Dependency [upyun-ruby](https://github.com/upyun/ruby-sdk) sdk.
 
 or
 
-`gem 'paperclip-upyun` in you Gemfile.
+`gem 'paperclip-upyun'` in you Gemfile.
 
 
 ## Usage
