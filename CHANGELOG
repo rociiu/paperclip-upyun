@@ -1,7 +1,10 @@
 ## CHANGELOG
 
+###0.1.3(2016-4-22)
+* add :need_delete option
+
 ###0.1.2(2016-1-3)
-* perfect REAM.md
+* perfect README.md
 * fix require issue
 * test passing
 

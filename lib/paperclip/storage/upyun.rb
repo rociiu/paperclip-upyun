@@ -21,11 +21,9 @@ module Paperclip
           @options[:interval] = "!"
 
           @upyun = ::Upyun::Rest.new(@bucket, @operator, @password)
-          log("@options[:path]: #{@options[:path]}")
-          log("@options[:url]: #{@options[:url]}")
-          @options[:path]  = @options[:path].gsub(/:url/, @options[:url])
-          log("@options[:path]: #{@options[:path]}")
-          @options[:url]   = ':upyun_public_url'
+          @options[:path] = @options[:path].gsub(/:url/, @options[:url])
+          @options[:url] = ':upyun_public_url'
+          @options[:need_delete] = @options[:need_delete] || true
 
           Paperclip.interpolates(:version) do |attachment, style|
             attachment.version(style)
@@ -44,7 +42,6 @@ module Paperclip
       end
 
       def exists?(style = default_style)
-        puts "enter exists? #{style}"
         resp = @upyun.getinfo(path(style))
         begin
           Paperclip::Upyun::Response.parse(resp)
@@ -68,15 +65,15 @@ module Paperclip
       end
 
       def flush_deletes
-        for path in @queued_for_delete do
-          log("deleting: #{path}")
-          delete(path)
+        if @options[:need_delete]
+          for path in @queued_for_delete do
+            delete(path)
+          end
         end
         @queued_for_delete = []
       end
 
       def public_url(style = default_style)
-        log("url:path=>#{path(style)}")
         url = "#{@options[:upyun_host]}/#{path(style)}"
       end
 
