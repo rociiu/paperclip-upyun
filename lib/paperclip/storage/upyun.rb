@@ -91,9 +91,18 @@ module Paperclip
       private
 
       def upload(file, path)
-        res = @upyun.put(path, File.new(file.path,"rb"))
+        retries = 0
         begin
+          res = @upyun.put(path, File.new(file.path,"rb"))
           Paperclip::Upyun::Response.parse(res)
+        rescue ::Paperclip::Upyun::Exceptions::NotFoundError => e
+          retries += 1
+          if retries <= 3
+            sleep((2 ** retries) * 0.5)
+            retry
+          else
+            raise
+          end
         rescue => err
           log("UPYUN<ERROR>: #{err}")
         end
