@@ -97,6 +97,8 @@ module Paperclip
           Paperclip::Upyun::Response.parse(res)
         rescue ::Paperclip::Upyun::Exceptions::NotFoundError => e
           raise
+        rescue ::Paperclip::Upyun::Exceptions::TooManyRequestsError => e
+          raise
         rescue => err
           log("UPYUN<ERROR>: #{err}")
         end
