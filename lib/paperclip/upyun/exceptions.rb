@@ -5,6 +5,7 @@ module Paperclip
       class UploadFailed < Error; end
       class ResponseError < Error; end
       class NotFoundError < Error; end
+      class TooManyRequestsError < Error; end
       class OptionsError < Error; end
     end
   end
